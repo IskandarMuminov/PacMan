@@ -12,18 +12,31 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
-
+        PlayStartTheme();
 
     }
 
 
     void Update()
     {
-        if (Input.GetKeyDown("return")) {
-            audioSource.loop = true;
-            AudioClip ghostNormal = sounds[1];
-            audioSource.clip = ghostNormal;
-            audioSource.Play() ;
+        if (!audioSource.isPlaying) { 
+            PlayGhostNormal();
         }
+            
+
+    }
+
+    public void PlayStartTheme() {
+
+        AudioClip startTheme = sounds[0];
+        audioSource.clip = startTheme;
+        audioSource.Play();
+    }
+
+    public void PlayGhostNormal () {
+        audioSource.loop = true;
+        AudioClip ghostNormal = sounds[1];
+        audioSource.clip = ghostNormal;
+        audioSource.Play();
     }
 }
